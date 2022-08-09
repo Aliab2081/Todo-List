@@ -38,14 +38,15 @@ function addTodo(event){
 
 function deleteCompletedTodo(event){
     const item = event.target;
+    console.log(item.parentElement)
     if (item.classList[0] === "trash-btn"){
         const todo = item.parentElement;
-        removeLocalTodo();
+        removeLocalTodo(todo);
         todo.remove();
     }
     if (item.classList[0] === "complete-btn"){
         const todo = item.parentElement;
-        todo.classList.toggle("")
+        todo.classList.toggle("completed")
     }
 }
 
@@ -91,8 +92,8 @@ function removeLocalTodo(todo){
     }else{
         todos = JSON.parse(localStorage.getItem("todos"))
     }
-    const todoindex = todo.children[0].innerText;
-    todos.splice(todos.indexof(todoindex), 1);
+    const todoIndex = todo.children[0].innerText;
+    todos.splice(todos.indexOf(todoIndex), 1);
     localStorage.setItem("todos", JSON.stringify(todos));
 
 }
